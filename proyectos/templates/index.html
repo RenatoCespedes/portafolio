@@ -1,0 +1,99 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{%block mycss %}
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/plugins/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/font/flaticon.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+<style>
+#home {
+  background: url("{% static 'assets/images/banner/banner2.jpg' %}") no-repeat center;
+}
+#home header .main-nav .logeo {
+  width: 20%;
+  max-width: 20%;
+  float: right;
+  position: absolute;
+  right: 0rem;
+  display: block;
+  color: #fff; }
+  @media screen and (max-width: 575.98px) {
+    #home header .main-nav .logeo {
+      width: 100%;
+      max-width: 100%; } }
+  #home header .main-nav .logeo h2 {
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    display: block;
+    letter-spacing: .3px; }
+  #home header .main-nav .logeo ul li {
+      display: inline-block;
+      margin: 0.4rem; }
+
+</style>
+{%endblock mycss%}
+{% block content %}
+<section id="home">
+  <header>
+      <div class="container">
+          <div class="main-nav">
+              <div class="logo">
+                  <!-- {% if user.is_authenticated %}
+                  <h2> {{ user.username }} </h2>
+                  {% else %}
+                    <p>You are not logged in</p>
+                    <a href="{% url 'login' %}">Log In</a>
+
+                  {% endif %} -->
+                  PortafoliosNet
+              </div>
+              <!-- {% if request.user.is_authenticated %}
+                  <a href="{% url 'logout' %}" class="btn btn-link">Cerrar Session</a>
+              {% endif %} -->
+              <div class="social-media">
+                  <ul>
+                      <li><a><i class="flaticon-facebook"></i></a></li>
+                      <li><a><i class="flaticon-twitter"></i></a></li>
+                      <li><a><i class="flaticon-behance-big-logo"></i></a></li>
+                      <li><a><i class="flaticon-linkedin"></i></a></li>
+                      <li><a><i class="flaticon-dribbble"></i></a></li>
+                  </ul>
+              </div>
+              <div class="logeo">
+                <ul>
+                  <li><a href="{% url 'login' %}">Iniciar Sesion</a></li>
+                  <li><a href="{% url 'register' %}">Registrarse</a></li>
+                </ul>
+                
+              </div>
+              <!-- <div onclick="show_menu()" class="my-toogle">
+                  <span><i class="flaticon-menu"></i></span>
+                  
+              </div> -->
+          </div>
+      </div>
+  </header>
+  <div class="container">
+      <div class="row">
+          <div class="my-wrapper">
+              <div class="inter">
+                  <h6>Introduce</h6>
+              </div>
+              <div class="welcome-box">
+                  <h3>Crea tu <span>Portafolio </span></h3>
+              </div>
+              <div class="name-box">
+                          <h1>Bienvenido a <span>Portafolios </span></h1>
+              </div>
+              <div class="line"></div>
+          </div>
+          <div class="copy-right">
+              <h6>© PortafoliosNet2022</h6>
+          </div>
+      </div>
+  </div>
+</section>
+
+{% endblock %}
