@@ -2,9 +2,9 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.views import View
 from django.views.generic import CreateView
-from projectForm.form import ProjectForm, NewUserForm,ContactForm
+from .form import ProjectForm
 from django.contrib.auth.decorators import login_required
-from .models import ProjectModel,Contacto
+from .models import ProjectModel
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login
