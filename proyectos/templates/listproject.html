@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul>
+
+    {% for object in object_list %}
+       <li>{{object.titulo}}</li>
+       <li><img src="{{object.foto}}" width="121.33" height="75.92"/></li>
+       <li>{{object.descripcion}}</li>
+       <li>{{object.tags}}</li>
+       <li>{{object.repo_url}}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
