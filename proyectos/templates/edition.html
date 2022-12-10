@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+RPUEA
+{% block title %}Proyecto : {{ elem.titulo }}{% endblock title %}
+
+{% block content %}
+
+<form id="" action="" method="POST">
+    {% csrf_token %}
+    <label type="text" >Titulo : </label>
+    <input type="text" value="{{ elem.titulo }}" name="titulo">
+    
+    <br>
+    <label type="text" >foto : </label>
+    <input type="text" value="{{ elem.foto }}" name="foto">
+    <br>
+    <label type="text" >descripcion : </label>
+    <input type="text" value="{{ elem.descripcion }}" name="descripcion">
+    <br>
+    <label type="text" >tags : </label>
+    <input type="text" value="{{ elem.tags }}" name="tags">
+    <br>
+    <label type="text" >repo_url : </label>
+    <input type="text" value="{{ elem.repo_url }}" name="repo_url">
+    <br>
+    <input type="submit" value="Update">
+</form>
+{% endblock content %}
