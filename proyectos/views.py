@@ -30,3 +30,8 @@ class RegisterProject(LoginRequiredMixin,View):
             titulo=form.cleaned_data['titulo'],descripcion=form.cleaned_data['descripcion'],
             tags=form.cleaned_data['tags'],repo_url=form.cleaned_data['repo_url'])
             return redirect('home')
+        
+class Home(View):
+    def get(self,request):
+    # genero=request.GET['genero']
+        return render(request, 'index.html', {})
