@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.views import LoginView, logout_then_login,LogoutView
 from django.contrib.auth.decorators import login_required
-from users.views import RegisterView, Profile,Mylogin 
-from proyectos.views import Home,RegisterProject
+from users.views import RegisterView, Profile,Mylogin
+from proyectos.views import Home,RegisterProject,ProjectList, ElementProjecto,Editelement,delete
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',Home.as_view(),name="home"),
@@ -26,5 +26,9 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('logout/',LogoutView.as_view(),name='logout'),
     path('profile/<str:usuario>',Profile.as_view(),name='profile'),
-    path('registerProject/',RegisterProject.as_view(),name='new project')
+    path('registerProject/',RegisterProject.as_view(),name='new project'),
+    path('list',ProjectList.as_view(),name='lista'),
+    path('<str:usuario>/element/<int:id>',ElementProjecto.as_view(),name='element'),
+    path('<str:usuario>/element/<int:id>/edit',Editelement.as_view(),name='edit'),
+    path('<str:usuario>/element/<int:id>/delete',delete,name='delete')
 ]
