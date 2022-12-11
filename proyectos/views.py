@@ -39,7 +39,7 @@ class Editelement(View):
     def post(self,request,id,usuario):
         element=ProjectModel.objects.get(id=id)
         # element=elem[0]
-        form_elem=ProjectForm(request.POST)
+        form_elem=ProjectForm(request.POST,request.FILES)
         print("-----------------------")
         print(form_elem.is_valid())
         print("-----------------------")
@@ -62,7 +62,7 @@ class RegisterProject(LoginRequiredMixin,View):
     def get(self,request):
         return render(request,self.template,self.context)
     def post(self,request):
-        form= ProjectForm(request.POST)
+        form= ProjectForm(request.POST, request.FILES)
         
         if form.is_valid():
             project = ProjectModel.objects.create(foto=form.cleaned_data['foto'],
