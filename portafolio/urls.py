@@ -19,6 +19,8 @@ from django.contrib.auth.views import LoginView, logout_then_login,LogoutView
 from django.contrib.auth.decorators import login_required
 from users.views import RegisterView, Profile,Mylogin
 from proyectos.views import Home,RegisterProject,ProjectList, ElementProjecto,Editelement,delete
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',Home.as_view(),name="home"),
@@ -31,4 +33,4 @@ urlpatterns = [
     path('<str:usuario>/element/<int:id>',ElementProjecto.as_view(),name='element'),
     path('<str:usuario>/element/<int:id>/edit',Editelement.as_view(),name='edit'),
     path('<str:usuario>/element/<int:id>/delete',delete,name='delete')
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
