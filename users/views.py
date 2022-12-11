@@ -5,7 +5,8 @@ from django.views.generic import CreateView
 from .form import NewUserForm,ContactForm
 from proyectos.form import ProjectForm
 from django.contrib.auth.decorators import login_required
-from .models import ProjectModel,Contacto
+from users.models import Contacto
+from proyectos.models import ProjectModel,User
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login
@@ -35,15 +36,15 @@ class Profile(View):
         self.context['data']=self.data
         return render(request,self.template, self.context)
     def post(self,request,usuario):
-        form= ProjectForm(request.POST)
+        form= ProjectForm(request.POST,request.FILES)
         form1=ContactForm(request.POST)
-
-
+        ux=User.objects.get(username=usuario)
+        # fot=.GET('foto')
         # if not form1:
         if  form.is_valid():
                 project = ProjectModel.objects.create(foto=form.cleaned_data['foto'],
                 titulo=form.cleaned_data['titulo'],descripcion=form.cleaned_data['descripcion'],
-                tags=form.cleaned_data['tags'],repo_url=form.cleaned_data['repo_url'])
+                tags=form.cleaned_data['tags'],repo_url=form.cleaned_data['repo_url'],usuarios=ux)
                 return redirect(reverse('profile',kwargs={'usuario':usuario}))
         # elif not form:
         if form1.is_valid():
@@ -58,7 +59,7 @@ class Mylogin(View):
     context={}
     def get(self,request):
         if request.user.is_authenticated:
-            return redirect('/profile')
+            return redirect(reverse('profile',kwargs={'usuario':request.user.username}))
         form = AuthenticationForm()
         self.context['form']=form
         return render(request,self.template_name,self.context)
@@ -69,7 +70,7 @@ class Mylogin(View):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect(f'/profile/{username}')
+            return redirect(reverse('profile',kwargs={'usuario':username}))
         else:
             form=AuthenticationForm()
             self.context['form']=form
