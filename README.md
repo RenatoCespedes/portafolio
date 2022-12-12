@@ -37,7 +37,7 @@ Pasos para la ejecución del archivo
 }
 ```
 
-- Despues ejecutar el servicio 
+- Despues ejecutar el servicio de django para correr la aplicacion
 ```bash
   python manage.py runserver
 ```
