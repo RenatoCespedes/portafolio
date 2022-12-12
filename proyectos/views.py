@@ -38,11 +38,7 @@ class Editelement(View):
         return render(request,self.template,self.context)
     def post(self,request,id,usuario):
         element=ProjectModel.objects.get(id=id)
-        # element=elem[0]
         form_elem=ProjectForm(request.POST,request.FILES)
-        print("-----------------------")
-        print(form_elem.is_valid())
-        print("-----------------------")
         if form_elem.is_valid():
             element.foto=form_elem.cleaned_data['foto']
             element.titulo=form_elem.cleaned_data['titulo']
