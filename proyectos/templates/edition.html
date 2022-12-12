@@ -1,27 +1,148 @@
 {% extends 'base.html' %}
-RPUEA
-{% block title %}Proyecto : {{ elem.titulo }}{% endblock title %}
+{% load static %}
+
+{% block title %}<title>Editar Proyecto</title>{% endblock title %}
+{% block mycss %}
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+<!-- <link rel="stylesheet" href="{% static 'assets/css/plugins/owl.carousel.min.css' %}"> -->
+<!-- <link rel="stylesheet" href="{% static 'assets/font/flaticon.css' %}"> -->
+<!-- <link rel="stylesheet" href="{% static 'assets/css/style.css' %}"> -->
+<!-- <link rel="stylesheet" href="{% static 'assets/css/plugins/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/font/flaticon.css' %}"> -->
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+<style>
+    #home {
+        background: url("{% static 'assets/images/banner/banner-2.jpg' %}") no-repeat center;
+      }
+    .login-container{
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 15px 10px 37px 10px;
+    }
+    .login-form-2{
+        padding: 5%;
+        background: #b52b0c;
+        box-shadow: 0 5px 0px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    }
+    .login-form-2 h3{
+        text-align: center;
+        margin-bottom:12%;
+        color: #fff;
+    }
+    .btnSubmit{
+        font-weight: 600;
+        width: 100%;
+        color: #282726;
+        background-color: #fff;
+        border: none;
+        border-radius: 1.5rem;
+        padding: 10px 0;
+        margin: 10px auto;
+    }
+    .margin-t {
+        margin-top: 15px;
+    }
+    .margin-t-sm {
+        margin-top: 10px;
+    }
+    .margin-t-md {
+        margin-top: 20px;
+    }
+    .margin-t-lg {
+        margin-top: 30px;
+    }
+    .form-control{
+        color: rgb(0, 0, 0);
+        font-weight: 600;
+        text-decoration: none;
+    }
+    .letra{
+        color: rgb(255, 255, 255);
+        font-weight: 600;
+    }
+    
+    
+</style>
+{%endblock mycss%}
 
 {% block content %}
+<section id="home">
+    <header>
+        <div class="container">
+            <div class="main-nav">
+                <div class="logo">
+                      <a href="{% url 'element' user.username elem.id  %}">Regresar</a>
 
-<form id="" action="" method="POST">
+                </div>
+            </div>
+        </div>
+    </header>
+</section>        
+
+<div id="home">
+    
+    <div class="container login-container animated flipInX">
+
+    <div class="row">
+        
+    <div class="col-md-6 login-form-1">
+        <img src="{{elem.foto.url}} "  width="560" height="660"/>
+    </div>
+<div class="col-md-6 login-form-2 ">
+    <h3>Editar Proyecto</h3>
+    <form action="" method="POST" enctype="multipart/form-data" class="margin-t">
+        {% csrf_token %}
+        <div class="form-group">
+            <label type="text" class="letra">Titulo : </label>
+            <input type="text" class="form-control" required  value="{{ elem.titulo }}" name="titulo"/>
+        </div>
+        <div class="form-group">
+            <label type="text" class="letra" >Foto : </label>
+            <div>
+                <input type="file"  name="foto"  accept="image/*" required id="id_foto">
+            </div>  
+        </div>
+        <div class="form-group">
+            <label type="text" class="letra" >Descripcion: </label>
+            <input type="text" class="form-control" required value="{{ elem.descripcion }}" name="descripcion"/>
+        </div>
+        <div class="form-group">
+            <label type="text" class="letra" >Tags: </label>
+            <input type="text" class="form-control"  value="{{ elem.tags }}" name="tags"/>
+        </div>
+        <div class="form-group">
+            <label type="text" class="letra" >URL: </label>
+            <input type="text" class="form-control"  value="{{ elem.repo_url }}" name="repo_url" placeholder="https://example.com" />
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btnSubmit btn  btn-outline-dark" value="Actualizar" />
+        </div>
+    </form>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- <div class="col-md-6 login-form-2">
+<form id="" action="" >
     {% csrf_token %}
     <label type="text" >Titulo : </label>
     <input type="text" value="{{ elem.titulo }}" name="titulo">
     
     <br>
-    <label type="text" >foto : </label>
-    <input type="text" value="{{ elem.foto }}" name="foto">
+    
     <br>
     <label type="text" >descripcion : </label>
-    <input type="text" value="{{ elem.descripcion }}" name="descripcion">
+    <input type="text" >
     <br>
-    <label type="text" >tags : </label>
-    <input type="text" value="{{ elem.tags }}" name="tags">
+   
+    <input type="text" >
     <br>
     <label type="text" >repo_url : </label>
-    <input type="text" value="{{ elem.repo_url }}" name="repo_url">
+    <input type="text" >
     <br>
-    <input type="submit" value="Update">
+    <input  value="Update">
 </form>
+</div> -->
 {% endblock content %}
