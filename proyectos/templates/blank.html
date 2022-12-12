@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{%block meta%}
+<meta http-equiv="refresh" content="2; url = {%url 'profile' usuario%}" />
+{% endblock meta %}
+
+{% block title %} 
+<title>Redirect</title>
+{%endblock title %}
+
+{%block content%}
+<h1>Redirigiendo</h1>
+   <p>Tu seras redirigo a la pagina de perfil.</p>
+{%endblock content%}
