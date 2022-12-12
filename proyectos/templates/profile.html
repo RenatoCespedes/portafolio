@@ -1,3 +1,8 @@
+{% extends 'base.html' %}
+{%block meta%} 
+<!-- <meta http-equiv="refresh" content="2"> -->
+{%endblock meta%}
+{% block title %}<title>Perfil</title> {% endblock title %}
 {% block content %}
 {% load static %}
 {%block mycss %}
@@ -12,6 +17,26 @@
         color: #fff;
         font-size: .9375rem;
         text-transform: capitalize; }
+    .form {
+            background:rgba(#298fde,.9);
+            padding: 10px;
+            max-width:800px;
+            margin:40px auto;
+            border-radius:4px;
+            box-shadow:0 4px 10px 4px rgba(#13232f,.3);
+          }
+    .letter-color-1{
+        color: #fff;
+    }
+
+.container-proper{
+    width: 50%;
+  padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem);
+  margin-right: auto;
+  margin-left: auto;
+}
+    
 </style>
 {%endblock mycss%}
 
@@ -46,20 +71,7 @@
 
                                 {% endif %}
                             </div>
-                            <!-- {% if request.user.is_authenticated %}
-                                
-                            {% endif %} -->
-                            <!-- <div>
-                                <a class="menu_trigger" href="#">menu</a>
-                                <nav id="nav">
-                                    <ul>
-                                        <li><a class="active" href="index.html">Home</a></li>
-                                        <li><a href="myskills.html">My skills</a></li>
-                                        <li><a href="Portfolio.html">Portfolio</a></li>
-                                        <li><a href="Contact.html">Contact</a></li>
-                                    </ul>
-                                </nav>
-                            </div> -->
+
                             <div class="social-media">
                                 <ul>
                                     <li><a><i class="flaticon-facebook"></i></a></li>
@@ -240,34 +252,86 @@
                                         <div class="tab-pane fade show active" id="free" role="tabpanel" aria-labelledby="free-template">
                                             <div class="content-list">
                                                 <ol>
-
                                                     {% for object in data %}
-                                                    <li> {{object.id}}
-                                                        <div class="_ok-vd_zs">
-                                                            <figure>
-                                                                <img src="{{object.foto}}" width="121.33" height="75.92"/>
-                                                                <div class="inner-content">
-                                                                    <a href="/{{user.username}}/element/{{object.id}}">Ver detalles</a>
-                                                                </div>
-                                                            </figure>
-                                                        </div>
-                                                    </li>
+                                                        {% if object.usuarios.id == user.id %}
+                                                        <li> 
+                                                            <div class="_ok-vd_zs">
+                                                                <figure>
+                                                                    <img src="{{object.foto.url}}" width="500" height="210"/>
+                                                                    <div class="inner-content">
+                                                                        <a href="/{{user.username}}/element/{{object.id}}">Ver detalles</a>
+                                                                    </div>
+                                                                </figure>
+                                                            </div>
+                                                        </li>
+                                                        {%endif%}
                                                     {% endfor %}                                                    
                                                 </ol>
                                             </div>
                                         </div>
                                         <!-- ------------***----------- -->
+                                        {%if user.username == request.user.username %}
                                         <div class="tab-pane fade " id="premium" role="tabpanel" aria-labelledby="premium-template">
                                             <div class="content-list">
                                                 <ol>
-                                                    <form action = "" method = "POST">
-                                                        {% csrf_token %}
-                                                        {{form.as_p  }}
-                                                        <input type="submit" value="Submit">
-                                                      </form>
+                                                    <div class="container-proper">
+                                                    <div class="form">
+                                                        <div id="signup">   
+                                                            <h2 class="letter-color-1">Registrar Proyecto</h2>
+                                                            
+                                                            <form action = "{% url 'profile' user.username %}" method = "POST" enctype="multipart/form-data">
+                                                                {% csrf_token %}
+                                                                <div class="card ">
+                                                                    <div class="field-wrap  card-header">
+                                                                        <label class="letter-color">
+                                                                        Nombre del proyecto<span class="req">*</span>
+                                                                        </label>
+                                                                        <div class="">
+                                                                        <input type="text" id="titulo" name="titulo" required autocomplete="off" />
+                                                                        </div>
+                                                                    </div>
+                                                                
+                                                                    <div class="field-wrap  card-header">
+                                                                        <label class="letter-color">
+                                                                        Etiquetas<span class="req">*</span>
+                                                                        </label>
+                                                                        <div>
+                                                                            <input type="text" name="tags" required autocomplete="off"/>
+                                                                        </div>
+                                                                    </div>
+                                                            
+                                                                    <div class="field-wrap  card-header"> 
+                                                                        <label class="letter-color">
+                                                                            Foto<span class="req">*</span>
+                                                                        </label> 
+                                                                        <div><input class="letter-color" type="file" name="foto" accept="image/*" required id="id_foto"></div>
+                                                                    </div>
+                                                                    <div class="field-wrap  card-header">
+                                                                        <label class="letter-color">
+                                                                            Descripcion<span class="req">*</span>
+                                                                        </label>
+                                                                        <div><input type="text" name="descripcion" required autocomplete="off"/></div>
+                                                                    </div>
+                                                            
+                                                                    <div class="field-wrap  card-header">
+                                                                    <label class="letter-color">
+                                                                        URL de repositorio<span class="req">*</span>
+                                                                    </label>
+                                                                    <div><input type="text" placeholder="https://hola.com" name="repo_url" required autocomplete="off"/></div>
+                                                                    </div>
+                                                                    
+                                                                    <input type="submit" class="form-button button-l send" value="Enviar">
+                                                              
+                                                                </div>
+                                                            </form>
+                                                                
+                                                        </div><!-- tab-content -->
+                                                    </div> 
+                                                </div>
                                                 </ol>
                                             </div>
                                         </div>
+                                        {%endif%}
                                         <!-- ------------***----------- -->
                                         
                                     </div>
@@ -293,27 +357,27 @@
                     <div class="row">
                         <div class="col-12">
                             
-                            <form method="post">
+                            <form action="{% url 'profile' user.username %}" method="post">
                                 {% csrf_token %}
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <input class="form-control" name="nombre" type="text" required="name" placeholder="Ingresa tu nombre">
+                                            <input class="form-control" name="nombre" type="text" required placeholder="Ingresa tu nombre">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <input class="form-control" name="correo" type="text" required="email" placeholder="Ingresa tu email">
+                                            <input class="form-control" name="correo" type="email" required placeholder="Ingresa tu email. Ex: hola@gmail.com">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <input class="form-control" name="tema" type="text" required="subject" placeholder="Tema (opcional)">
+                                            <input class="form-control" name="tema" type="text" required placeholder="Tema">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <textarea class="" cals="40" rows="10" name="mensaje" type="text" placeholder="Mensaje"></textarea>
+                                            <textarea class="" cals="40" rows="10" name="mensaje" type="text" required placeholder="Mensaje"></textarea>
                                         </div>
                                     </div>
                                     
@@ -331,6 +395,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- <a href="javascript:location.reload(true)">Refresh this Page</a> -->
                 </div>
             </section>
             <!-- =================================********================================= -->
