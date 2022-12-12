@@ -1,20 +1,155 @@
 {% extends 'base.html' %}
+{% load static %}
+{%block title %}
+<title>Detalles del proyecto</title>
+{%endblock title%}
+{%block mycss%}
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
+<link rel="stylesheet" href="{% static 'assets/css/edit.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+<style>
+	
+  
+.tags
+{
+	display: block;
+	justify-content: center;
+	text-align: center;
+		 
+	   }
 
+	   
+.broker-tag
+{
+	background: #cedad9;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 20px;
+	padding: 5px 10px;
+	margin: 3px 0;
+	border-radius: 6px;
+	display: block;
+}
+.letter-color{
+	color: rgb(1, 1, 1);
+	font-size: xx-large;
+}
+body {
+	background: url("{% static 'assets/images/banner/banner-2.jpg' %}") no-repeat center;
+  }
+
+.test{
+	box-sizing: border-box;
+	width: 80%;
+	height: 600px;
+	border: solid #ffffff00 10px;
+	padding: -10px;
+	margin: auto;
+
+}
+.card-1 {
+	height: 10%;
+	width: 50%;
+	margin: 100;
+	min-width: 0;
+	background-color: #fff;
+	border-radius: 0.25rem;
+  }
+</style>
+{%endblock mycss %}
+{% block title %}<title>Detalles Proyecto</title>{%endblock title%}
 {% block content %}
-<ul>
-       
-    
-       <li>{{project.titulo}}</li>
-       <li><img src="{{project.foto}}" width="121.33" height="75.92"/></li>
-       <li>{{project.descripcion}}</li>
-       <li>{{project.tags}}</li>
-       <li>{{project.repo_url}}</li>
-       <li>{{usuario}}</li>
+<section id="home">
+    <header>
+        <div class="container">
+            <div class="main-nav">
+                <div class="logo">
+                      <a href="{% url 'profile' user.username  %}">Regresar</a>
 
-</ul>
-<a href="{{project.id}}/edit">Editar </a>
-<br>
-<a href="{{project.id}}/delete">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </header>
+</section>   
+<div class="col-lg-10 test">
+<div class="card mb-4">
+<div class="container">       
+	<div class="row">
+		<div class="text-center ">
+			<h1 class="fw-bolder letter-color">Detalles del proyecto</h1>
+			<!-- <p class="lead mb-0"><hr>aa</p> -->
+		</div>
+		<div class="col-lg-8">
+			<div class="card mb-4">
+				<a ><img class="card-img-top" src="/media/{{project.foto}} " alt="..." width="850" height="350"></a>
+				<div class="card-body">
+					<div class="small text-muted">10 Diciembre, 2022</div>
+						<h2 class="card-title">{{project.titulo}}</h2>
+						<p class="card-text">{{project.descripcion}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="card mb-4">
+				<div class="card-header">Tags del proyecto</div>
+				<div class="card-body">
+					<div class="col-sm-6">
+						<div class="row">
+							<div class="tags">
+								<ul class="list-unstyled mb-0" >
+									<li class="broker-tag"><a href="">JavaScript</a></li>
+									<li class="broker-tag"><a href="">CSS</a></li>
+									<li class="broker-tag"><a href="">Tutorials</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card mb-4">
+				<div class="card-header">Repositorio</div>
+				<div class="card-body">Puedes encontrar el codigo en el siguiente repositorio <a href="#">{{project.repo_url}}</a> </div>
+			</div>
+			<div class="card mb-4">
+				<div class="card-header">Acciones</div>
+				<div class="card-body"><a href="{{project.id}}/edit">Editar </a> </div>
+				<div class="card-body"><a href="{{project.id}}/delete">Eliminar</a></div>
+				<div class="card-body"><a href="javascript:location.reload(true)">Refresh this Page</a></div>
+			</div>
+			
+			<br>
+			
+			
+		</div>
+	</div>
+</div>
+</div>
+
+		<!-- <div class="col-md-3">
+			<div class="contact-info">
+				<h2>{{project.titulo}}</h2>
+                            <div class="line-1">
+                                   <hr>
+                            </div>
+                            <h3>Descripción</h3>
+				<h4>{{project.descripcion}}</h4>
+			</div>
+		</div> -->
+		
+	
+
+    
+       <!-- <li>{{project.titulo}}</li> -->
+       <!-- <li><img src="/media/{{project.foto}}" /></li> -->
+       <!-- width="121.33" height="75.92" -->
+       <!-- <li>{{project.descripcion}}</li> -->
+       <!-- <li>{{project.tags}}</li> -->
+       <!-- <li>{{project.repo_url}}</li> -->
+
+
+
 
 
 {% endblock %}
