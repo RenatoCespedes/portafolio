@@ -32,5 +32,5 @@ urlpatterns = [
     path('list',ProjectList.as_view(),name='lista'),
     path('<str:usuario>/element/<int:id>',ElementProjecto.as_view(),name='element'),
     path('<str:usuario>/element/<int:id>/edit',Editelement.as_view(),name='edit'),
-    path('<str:usuario>/element/<int:id>/delete',delete,name='delete')
+    path('<str:usuario>/element/<int:id>/delete',delete,name='delete'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
